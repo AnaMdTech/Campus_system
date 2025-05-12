@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Home - Campus System{% endblock %}
+
+{% block content %}
+    <div class="bg-white p-8 rounded-lg shadow-md max-w-2xl mx-auto text-center">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ welcome_message }}</h1>
+        <p class="text-gray-600 mb-6">
+            Select an action below to simulate student interactions using their QR Identifier on thier ID Card.
+        </p>
+        <div class="space-y-4">
+            <a href="{% url 'gate:scan_simulator' %}"
+               class="block w-full bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 transition duration-200 text-lg">
+               Simulate Gate Scan (Entry/Exit)
+            </a>
+            <a href="{% url 'meal:scan_simulator' %}"
+               class="block w-full bg-green-600 text-white py-3 px-4 rounded-md hover:bg-green-700 transition duration-200 text-lg">
+               Simulate Meal Scan (Cafeteria)
+            </a>
+        </div>
+    </div>
+{% endblock %}

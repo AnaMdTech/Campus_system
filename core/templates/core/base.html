@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {# Use the Tailwind Play CDN script - loads Tailwind dynamically #}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% block title %}Campus System{% endblock %}</title>
+    <style>
+        /* Simple style for messages based on Django's default tags */
+        .message { padding: 0.75rem 1rem; margin-bottom: 1rem; border-radius: 0.375rem; border-width: 1px; }
+        .message.debug { background-color: #f3f4f6; border-color: #d1d5db; color: #1f2937; } /* Gray */
+        .message.info { background-color: #eff6ff; border-color: #bfdbfe; color: #1e40af; } /* Blue */
+        .message.success { background-color: #d1fae5; border-color: #a7f3d0; color: #065f46; } /* Green */
+        .message.warning { background-color: #fef3c7; border-color: #fde68a; color: #92400e; } /* Yellow/Orange */
+        .message.error { background-color: #fee2e2; border-color: #fecaca; color: #991b1b; } /* Red */
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <nav class="bg-blue-600 p-4 text-white shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+             <a href="{% url 'home' %}" class="text-xl font-bold hover:text-blue-200">CampusSim</a>
+             <div>
+                 <a href="{% url 'gate:scan_simulator' %}" class="px-3 py-2 hover:bg-blue-700 rounded">Gate Sim</a>
+                 <a href="{% url 'meal:scan_simulator' %}" class="px-3 py-2 hover:bg-blue-700 rounded">Meal Sim</a>
+             </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto mt-2 p-4">
+        {# --- Messages Area --- #}
+        {% comment %} {% if messages %}
+            <div class="mb-6">
+                {% for message in messages %}
+                    {# Apply base 'message' class and the specific tag (success, error etc) #}
+                    <div class="message {{ message.tags }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %} {% endcomment %}
+        {# --- End Messages Area --- #}
+
+
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% comment %} <footer class="text-center text-gray-500 text-sm mt-12 pb-4">
+        Campus System Simulator &copy; {% now "Y" %} {# Display current year #}
+    </footer> {% endcomment %}
+
+</body>
+</html>

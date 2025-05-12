@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Verify Student Exit{% endblock %}
+
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-md max-w-3xl mx-auto">
+    <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">Verify Student Exit</h1>
+
+    <div class="text-center mb-6 border-b pb-4">
+        {% if student.image %}
+            <img src="{{ student.image.url }}" alt="{{ student.get_full_name }}" class="w-32 h-32 rounded-full mx-auto shadow-md border object-cover">
+        {% else %}
+            <div class="w-32 h-32 rounded-full mx-auto bg-gray-200 flex items-center justify-center text-gray-500">
+                No Image
+            </div>
+        {% endif %}
+        <p class="text-lg font-semibold text-gray-700 mt-2">{{ student.get_full_name }}</p>
+        <p class="text-gray-600">{{ student.student_id }}</p>
+    </div>
+
+    {% if belongings %}
+        <h2 class="text-xl font-semibold mb-4 text-gray-700">Registered Belongings</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-y-auto max-h-48">
+            {% for item in belongings %}
+                <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition">
+                    <div class="text-2xl">
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-16 h-16 object-cover rounded">
+                    </div>
+                    <p class="text-gray-800 font-semibold">{{ item.name }}</p>
+                    <p class="text-sm text-gray-500">ID/Mark: {{ item.identifier }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="mt-4 text-red-600">No belongings registered for this student.</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'gate:process_exit' student.id %}" class="mt-6 text-center">
+        {% csrf_token %}
+        <button type="submit" class="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 w-full sm:w-auto font-semibold">
+            Allow Exit
+        </button>
+    </form>
+
+    {% comment %} <div class="mt-8 text-center">
+        <a href="{% url 'gate:scan_simulator' %}" class="text-sm text-blue-600 hover:underline">Back to Scanner</a>
+    </div> {% endcomment %}
+</div>
+{% endblock %}
