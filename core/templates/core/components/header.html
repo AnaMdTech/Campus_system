@@ -1,0 +1,15 @@
+{% load static %}
+<header class="p-4 fixed w-full top-0 z-20 border-b"> {# Removed specific border color class #}
+    <nav class="flex justify-between items-center mx-12">
+      {% comment %} <a href="{% url 'core:home' %}" class="flex flex-col items-center group"> {% endcomment %}
+      <div class="flex flex-col items-center group">
+        <img src="{% static 'core/images/astu-logo.png' %}" alt="astu logo" class="h-10 w-auto rounded shadow" />
+        {# Removed specific text color class #}
+        <span class="text-md font-bold">ASTU Portal</span>
+      </div>
+      {% if user.is_authenticated %}
+        {# Removed specific color classes, relying on base/theme CSS #}
+        <a href="{% url 'core:staff_logout' %}" class="px-3 py-2 hover:bg-blue-700 rounded">Logout</a>
+      {% endif %}
+    </nav>
+</header>

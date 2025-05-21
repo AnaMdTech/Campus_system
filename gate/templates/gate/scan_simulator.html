@@ -1,10 +1,14 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Gate Scan Simulator{% endblock %}
+{% block title %}Gate Scan{% endblock %}
+
+{% block header %}
+    {% include "core/components/header.html" %}
+{% endblock  %}
 
 {% block content %}
 <div class="bg-white p-8 rounded-lg shadow-md max-w-lg mx-auto">
-  <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Gate Scan Simulator</h1>
+  <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Gate Scan</h1>
 
   {% if messages %}
     <ul class="mb-4" id="message-container">
@@ -16,7 +20,9 @@
     </ul>
   {% endif %}
 
-  <div id="qr-reader" class="mb-6 w-full max-w-md mx-auto border rounded shadow"></div>
+  <div class="w-[350px]">
+    <div id="qr-reader"></div>
+  </div>
 
   <form method="post" action="{% url 'gate:scan_simulator' %}" id="scan-form">
     {% csrf_token %}
@@ -27,7 +33,7 @@
             Direction:
         </label>
         <select id="direction" name="direction" required
-                class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-white">
+                class="w-full border border-gray-300 rounded-md p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
             <option value="" disabled selected>-- Select Direction --</option>
             <option value="IN">Entry (IN)</option>
             <option value="OUT">Exit (OUT)</option>
@@ -35,9 +41,9 @@
     </div>
   </form>
 
-  <div class="mt-6 text-center">
-    <a href="{% url 'home' %}" class="text-sm text-blue-600 hover:underline">Back to Home</a>
-  </div>
+  {% comment %} <div class="mt-6 text-center">
+    <a href="{% url 'core:home' %}" class="text-sm text-blue-600 hover:underline">Back to Home</a>
+  </div> {% endcomment %}
 </div>
 
 <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
@@ -46,7 +52,7 @@
     const messageContainer = document.getElementById('message-container');
 
     function restartScanner() {
-      const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+      const config = { fps: 10, qrbox: { width: 350, height: 250 } };
       html5QrCode.start(
         { facingMode: 'environment' },
         config,

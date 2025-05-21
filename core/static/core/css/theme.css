@@ -1,0 +1,490 @@
+/* Base styles for the light theme (default)
+   These styles apply unless the 'dark' class is present on the html element.
+*/
+:root {
+    /* Backgrounds */
+    --bg-body: #f8f9fa;
+    --bg-header: #f8f9fa;
+    --bg-sidebar: #f8f9fa;
+    --bg-main-content: #f8f9fa;
+    --bg-sidebar-hover: #e9ecef;
+    --bg-sidebar-active: #e9ecef;
+    --bg-theme-switch-off: #9ca3af;
+    --bg-theme-switch-on: #2563eb; /* Consider making this a light mode specific variable */
+    --bg-muted: #f8f9fa; /* Added for gray-50 equivalent */
+
+
+    /* Text Colors */
+    --text-default: #1f2937;
+    --text-header: #1f2937;
+    --text-sidebar: #1f2937;
+    --text-sidebar-label: #1f2937;
+    --text-logo-hover: #1f2937;
+    --text-footer: #1f2937;
+    --text-active-link: #1f2937; /* Used for active sidebar link */
+    --text-settings-label: #1f2937; /* Ensure this is visible on the light sidebar */
+    --text-muted: #4b5563; /* Added for paragraph text (gray-600 equivalent) */
+    --text-secondary: #374151; /* Added for gray-700 equivalent */
+    --text-link: #2563eb; /* Equivalent to blue-600 */
+    --text-link-hover: #1d4ed8; /* Equivalent to blue-700 */
+
+
+    /* Borders */
+    --border-header: #ccc;
+    --border-sidebar: #ccc;
+    --border-sidebar-divider: #ccc;
+    --border-input: #d1d5db; /* Equivalent to gray-300 */
+    --border-card-divider: #e5e7eb; /* Equivalent to gray-200 */ /* Added for internal borders */
+    --border-muted: #e5e7eb; /* Equivalent to gray-200 */ /* Added for muted borders like item cards */
+
+
+    /* Shadows */
+    --shadow-header: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.1); /* Adjusted base card shadow */
+    --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.15); /* Added hover shadow variable */
+
+
+    /* Theme Toggle */
+    --theme-ball: #ffffff;
+
+    /* Card/Form/Specific element colors */
+    --card-bg: #ffffff; /* Variable for card backgrounds */
+    --form-input-bg: #ffffff;
+    --form-placeholder-text: #9ca3af; /* Equivalent to Tailwind gray-400 */
+    --form-label-text: #374151; /* Equivalent to gray-700 */
+
+    --message-success-bg: #d4edda;
+    --message-success-text: #155724;
+    --message-success-border: #c3e6cb;
+    --message-error-bg: #f8d7da;
+    --message-error-text: #721c24;
+    --message-error-border: #f5c6cb;
+    --message-warning-bg: #fff3cd; /* Example warning */
+    --message-warning-text: #664d03;
+    --message-warning-border: #ffecb5;
+    --message-info-bg: #cfe2ff; /* Example info */
+    --message-info-text: #084298;
+    --message-info-border: #b6d4fe;
+
+
+    /* Button colors */
+    --btn-primary-bg: #2563eb; /* blue-600 */
+    --btn-primary-bg-hover: #1d4ed8; /* blue-700 */
+    --btn-primary-text: #ffffff;
+
+    --btn-success-bg: #10b981; /* green-500 */ /* Adjusting from green-600 */
+    --btn-success-bg-hover: #059669; /* green-600 */
+    --btn-success-text: #ffffff;
+
+    /* No Image Placeholder */
+    --no-image-placeholder-bg: #e5e7eb; /* gray-200 */
+    --no-image-placeholder-text: #6b7280; /* gray-500 */
+}
+
+/* Dark theme styles
+   These styles apply only when the 'dark' class is present on the html element.
+*/
+html.dark {
+    /* Backgrounds */
+    --bg-body: #111827; /* More standard dark background */
+    --bg-header: #1f2937;
+    --bg-sidebar: #1f2937;
+    --bg-main-content: #1f2937;
+    --bg-sidebar-hover: #374151;
+    --bg-sidebar-active: #4b5563;
+    --bg-theme-switch-off: #4b5563;
+    --bg-theme-switch-on: #60a5fa; /* Adjusted for dark mode */
+    --bg-muted: #374151; /* Added for gray-700 equivalent */
+
+
+    /* Text Colors */
+    --text-default: #f3f4f6;
+    --text-header: #f3f4f6;
+    --text-sidebar: #f3f4f6;
+    --text-sidebar-label: #f3f4f6;
+    --text-logo-hover: #93c5fd;
+    --text-footer: #6b7280;
+    --text-active-link: #93c5fd;
+    --text-settings-label: #e5e7eb;
+    --text-muted: #9ca3af; /* Added for paragraph text (gray-400 equivalent) */
+    --text-secondary: #d1d5db; /* Added for gray-300 equivalent */
+    --text-link: #60a5fa; /* Equivalent to blue-400 */
+    --text-link-hover: #93c5fd; /* Equivalent to blue-300 */
+
+
+    /* Borders */
+    --border-header: #4b5563;
+    --border-sidebar: #4b5563;
+    --border-sidebar-divider: #374151;
+    --border-input: #4b5563; /* Equivalent to gray-600 for dark mode input border */
+    --border-card-divider: #4b5563; /* Equivalent to gray-600 */
+    --border-muted: #4b5563; /* Equivalent to gray-600 */
+
+
+    /* Shadows */
+    --shadow-header: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.4); /* Adjusted dark mode shadow */
+    --shadow-card-hover: 0 6px 16px rgba(0, 0, 0, 0.5); /* Added hover dark mode shadow */
+
+
+    /* Theme Toggle */
+    --theme-ball: #ffffff;
+
+    /* Card/Form/Specific element colors */
+    --card-bg: #1f2937; /* Equivalent to Tailwind gray-800 */
+    --form-input-bg: #374151; /* Equivalent to Tailwind gray-700 for input background in dark mode */
+    --form-placeholder-text: #6b7280; /* Equivalent to Tailwind gray-500 for dark mode */
+    --form-label-text: #d1d5db; /* Equivalent to gray-300 */
+
+    --message-success-bg: #1a4d2e;
+    --message-success-text: #d4edda;
+    --message-success-border: #28a745;
+    --message-error-bg: #6a1a21;
+    --message-error-text: #f8d7da;
+    --message-error-border: #dc3545;
+    --message-warning-bg: #5a3905; /* Example warning */
+    --message-warning-text: #fff3cd;
+    --message-warning-border: #a47b2b;
+    --message-info-bg: #1c3d63; /* Example info */
+    --message-info-text: #cfe2ff;
+    --message-info-border: #3f75b6;
+
+    /* Button colors */
+     --btn-primary-bg: #60a5fa; /* blue-400 */ /* Adjusted for better visibility */
+     --btn-primary-bg-hover: #93c5fd; /* blue-300 */
+     --btn-primary-text: #1f2937; /* Dark text on light button */
+
+     --btn-success-bg: #34d399; /* green-300 */ /* Adjusted */
+     --btn-success-bg-hover: #6ee7b7; /* green-200 */
+     --btn-success-text: #1f2937; /* Dark text on light button */
+
+     /* No Image Placeholder */
+    --no-image-placeholder-bg: #4b5563; /* gray-600 */
+    --no-image-placeholder-text: #d1d5db; /* gray-300 */
+}
+
+/* Apply CSS variables to elements
+   These styles use the variables defined above, allowing the theme switch
+   to change the appearance by changing the variable values.
+*/
+body {
+    background-color: var(--bg-body);
+    color: var(--text-default);
+    margin: 0; /* Reset default body margin */
+    padding: 0; /* Reset default body padding */
+    font-family: sans-serif; /* Example default font */
+}
+
+header {
+    background-color: var(--bg-header);
+    color: var(--text-header);
+    box-shadow: var(--shadow-header);
+    border-bottom-color: var(--border-header);
+}
+
+header nav a {
+    color: var(--text-header);
+    text-decoration: none;
+}
+
+header nav a:hover span {
+     color: var(--text-logo-hover); /* Apply hover color to the span */
+}
+
+header nav a.logout-link { /* Assuming logout link needs distinct styling */
+    color: var(--text-header); /* Default color */
+    text-decoration: none;
+    /* Add padding, hover effects here if not using Tailwind classes directly */
+}
+
+header nav a.logout-link:hover {
+    background-color: var(--bg-sidebar-hover); /* Example hover background */
+}
+
+
+aside#sidebar {
+    background-color: var(--bg-sidebar);
+    color: var(--text-sidebar);
+    border-right-color: var(--border-sidebar);
+}
+
+#sidebar-header-expanded,
+#sidebar-header-collapsed {
+    border-bottom-color: var(--border-sidebar-divider);
+}
+
+#sidebar-header-expanded button,
+#sidebar-header-collapsed button {
+     color: var(--text-sidebar); /* Ensure button icon/text is visible */
+}
+
+#sidebar-header-expanded button:hover,
+#sidebar-header-collapsed button:hover {
+    background-color: var(--bg-sidebar-hover);
+}
+
+
+aside#sidebar .label {
+    color: var(--text-sidebar-label);
+}
+
+aside#sidebar nav a {
+    color: var(--text-sidebar); /* Default link color */
+    text-decoration: none;
+}
+
+aside#sidebar nav a:hover {
+    background-color: var(--bg-sidebar-hover);
+}
+
+aside#sidebar nav a.active-link {
+    background-color: var(--bg-sidebar-active); /* Example active background */
+    color: var(--text-active-link);
+}
+
+aside#sidebar button {
+    color: var(--text-sidebar); /* Default button text color */
+}
+
+aside#sidebar button:hover {
+     background-color: var(--bg-sidebar-hover);
+}
+
+/* aside#sidebar #settings-dropdown { */
+     /* Styles for the dropdown background if needed, though it inherits sidebar background */
+/* } */
+
+aside#sidebar #settings-dropdown span.label {
+     color: var(--text-settings-label);
+}
+
+aside#sidebar #theme-switch {
+    background-color: var(--bg-theme-switch-off);
+}
+
+aside#sidebar #theme-toggle:checked + #theme-switch {
+    background-color: var(--bg-theme-switch-on);
+}
+
+aside#sidebar #theme-ball {
+    background-color: var(--theme-ball);
+     /* The transition logic for the ball position is handled by the JS */
+     /* Initial position */
+     transform: translateX(0px);
+     transition: transform 0.3s ease; /* Added transition */
+}
+
+/* Style for the ball when the toggle is checked */
+aside#sidebar #theme-toggle:checked + #theme-switch #theme-ball {
+    transform: translateX(20px); /* Move the ball */
+}
+
+
+aside#sidebar .border-t {
+    border-top-color: var(--border-sidebar-divider);
+}
+
+aside#sidebar .text-gray-400 { /* Footer text - replaced hardcoded with class */
+    color: var(--text-footer); /* Using text-footer variable */
+}
+
+
+main#main-content {
+    background-color: var(--bg-main-content);
+    color: var(--text-default);
+}
+
+
+/* --- Styles for General Cards/Content Blocks --- */
+
+/* Target divs that look like cards based on common Tailwind classes */
+/* Note: This selector can become complex. Consider adding a dedicated 'card' class in HTML. */
+/* For now, target common combinations */
+.bg-white.p-8.rounded-lg.shadow-md, /* Gate Scan, Verify Exit */
+.bg-white.p-10.rounded-lg.shadow-xl, /* Welcome */
+.max-w-md.mx-auto.bg-white /* Login Form */
+{
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow-card);
+    /* Inherits border-radius and padding from Tailwind classes */
+}
+
+/* Add hover effect for cards that use it (like belongings list items) */
+.hover\:shadow-md:hover { /* Targeting the Tailwind hover class */
+     box-shadow: var(--shadow-card-hover);
+}
+
+
+/* --- Styles for Text within Cards --- */
+
+/* Targeting h1, h2, p within card-like containers */
+.bg-white.p-8.rounded-lg.shadow-md h1,
+.bg-white.p-10.rounded-lg.shadow-xl h1,
+.max-w-md.mx-auto.bg-white h2 {
+    color: var(--text-default); /* Default text for main headings/titles */
+}
+
+.bg-white.p-8.rounded-lg.shadow-md h2, /* H2 in Verify Exit */
+.bg-white.p-8.rounded-lg.shadow-md p.text-gray-700 /* Student name in Verify Exit */
+{
+    color: var(--text-secondary); /* Use secondary text for sub-headings or slightly less prominent text */
+}
+
+
+.bg-white.p-8.rounded-lg.shadow-md p,
+.bg-white.p-10.rounded-lg.shadow-xl p,
+.max-w-md.mx-auto.bg-white p.text-gray-600 /* paragraph in login form */
+{
+    color: var(--text-muted); /* Muted text for paragraphs */
+}
+
+
+/* --- Styles for Input Forms & Controls --- */
+
+/* Targeting form labels */
+label {
+    color: var(--form-label-text); /* Use form label text color */
+}
+
+/* Input fields within a card/form container */
+.max-w-md.mx-auto input[type="text"],
+.max-w-md.mx-auto input[type="password"],
+/* Select inputs */
+select {
+    background-color: var(--form-input-bg); /* Use form input background variable */
+    color: var(--text-default); /* Use default text color variable */
+    border-color: var(--border-input); /* Use input border variable */
+     /* Inherits width, margin, padding, border-radius from Tailwind classes */
+}
+
+/* Ensure options are visible */
+select option {
+    background-color: var(--form-input-bg); /* Match input background */
+    color: var(--text-default); /* Match input text color */
+}
+
+
+/* Placeholder text for inputs within a card/form container */
+input::placeholder { /* Apply to all placeholders for simplicity */
+    color: var(--form-placeholder-text); /* Use placeholder text variable */
+    opacity: 1; /* Firefox default is less than 1 */
+}
+
+
+/* --- Styles for Links within Cards --- */
+
+/* Targeting links that are explicitly styled with text-blue-600 in the templates */
+.text-blue-600 { /* Targeting the Tailwind class directly */
+     color: var(--text-link);
+}
+
+.text-blue-600:hover {
+     color: var(--text-link-hover);
+     text-decoration: underline; /* Keep underline from Tailwind hover:underline */
+}
+
+/* --- Styles for Buttons --- */
+
+/* Targeting buttons/links styled as primary buttons */
+.bg-blue-600.hover\:bg-blue-700.text-white { /* Targeting the specific Tailwind classes */
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+}
+
+.bg-blue-600.hover\:bg-blue-700.text-white:hover {
+     background-color: var(--btn-primary-bg-hover);
+     color: var(--btn-primary-text); /* Text color often doesn't change on hover */
+}
+
+/* Targeting buttons styled as success buttons */
+.bg-green-600.hover\:bg-green-700.text-white { /* Targeting the specific Tailwind classes */
+    background-color: var(--btn-success-bg);
+    color: var(--btn-success-text);
+}
+
+.bg-green-600.hover\:bg-green-700.text-white:hover {
+     background-color: var(--btn-success-bg-hover);
+     color: var(--btn-success-text); /* Text color often doesn't change on hover */
+}
+
+
+/* --- Styles for Messages --- */
+
+/* Container for messages (ul) */
+/* #message-container { Use the ID for high specificity */
+    /* Inherits background/text from parent or set explicitly if needed */
+/* } */
+
+/* Individual message items (li) */
+/* #message-container li { */
+     /* Inherits padding, margin, border-radius from Tailwind classes */
+     /* Background and text color handled by specific tag rules below */
+/* } */
+
+/* Specific message tags */
+#message-container li.error, /* Target error messages specifically */
+#message-container li.bg-red-500 /* Also target the Tailwind class for robustness */
+ {
+    color: var(--message-error-text);
+    background-color: var(--message-error-bg);
+    border-color: var(--message-error-border);
+    border: 1px solid; /* Ensure border is applied */
+}
+
+#message-container li.success, /* Target success messages specifically */
+#message-container li.bg-green-500 /* Also target the Tailwind class for robustness */
+ {
+    color: var(--message-success-text);
+    background-color: var(--message-success-bg);
+    border-color: var(--message-success-border);
+    border: 1px solid; /* Ensure border is applied */
+}
+/* Add styles for other tags if needed (warning, info) */
+
+
+/* --- Styles for Specific Page Elements --- */
+
+/* QR Reader div */
+#qr-reader {
+     border-color: var(--border-input); /* Use input border variable for consistency */
+     box-shadow: var(--shadow-card); /* Use card shadow variable */
+     /* Inherits width, max-width, mx-auto from Tailwind */
+}
+
+/* Student Info Block Border */
+.text-center.mb-6.border-b { /* Targeting the specific divider div */
+    border-bottom-color: var(--border-card-divider); /* Use card divider variable */
+}
+
+/* No Image Placeholder */
+.bg-gray-200.flex.items-center.justify-center.text-gray-500 { /* Targeting the specific div */
+    background-color: var(--no-image-placeholder-bg);
+    color: var(--no-image-placeholder-text);
+}
+
+/* Belongings List Item */
+.bg-gray-50.border.border-gray-200.rounded-lg.p-4.shadow-sm { /* Targeting the specific div */
+    background-color: var(--bg-muted); /* Use muted background variable */
+    border-color: var(--border-muted); /* Use muted border variable */
+    /* Inherits padding, border-radius, shadow-sm */
+}
+
+/* Belongings Item Text */
+.bg-gray-50.border.border-gray-200.rounded-lg.p-4.shadow-sm p.text-gray-800 { /* Item name */
+    color: var(--text-default); /* Default text color */
+}
+.bg-gray-50.border.border-gray-200.rounded-lg.p-4.shadow-sm p.text-gray-500 { /* Item ID/Mark */
+    color: var(--text-footer); /* Using footer text color for smaller, less important text */
+}
+
+/* No belongings message */
+.mt-4.text-red-600 { /* Targeting the specific paragraph */
+    color: var(--message-error-text); /* Use error text color variable */
+    /* Inherits margin-top */
+}
+
+
+/* --- End of Styles for Specific Page Elements --- */
+
+
+/* ... (rest of your existing CSS rules if any) ... */

@@ -1,56 +1,64 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html-root"> {# html-root ID is still here, though JS uses document.documentElement #}
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {# Use the Tailwind Play CDN script - loads Tailwind dynamically #}
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>{% block title %}Campus System{% endblock %}</title>
-    <style>
-        /* Simple style for messages based on Django's default tags */
-        .message { padding: 0.75rem 1rem; margin-bottom: 1rem; border-radius: 0.375rem; border-width: 1px; }
-        .message.debug { background-color: #f3f4f6; border-color: #d1d5db; color: #1f2937; } /* Gray */
-        .message.info { background-color: #eff6ff; border-color: #bfdbfe; color: #1e40af; } /* Blue */
-        .message.success { background-color: #d1fae5; border-color: #a7f3d0; color: #065f46; } /* Green */
-        .message.warning { background-color: #fef3c7; border-color: #fde68a; color: #92400e; } /* Yellow/Orange */
-        .message.error { background-color: #fee2e2; border-color: #fecaca; color: #991b1b; } /* Red */
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  {# --- FIX: Apply theme class immediately (KEEP INLINE) --- #}
+  {# This script must run before CSS loads to prevent the flash #}
+  <script>
+    // Read theme from localStorage early
+    const savedTheme = localStorage.getItem('theme');
+    // Also check OS preference if no theme is saved
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // Apply dark class if saved preference is dark OR (no saved preference AND OS prefers dark)
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+    } else if (savedTheme === 'light') {
+        // Explicitly remove dark class if saved preference is light
+        document.documentElement.classList.remove('dark');
+    }
+    // If no saved theme and OS does not prefer dark, no action needed (default is light)
+
+  </script>
+  {# ------------------------------------------------------- #}
+
+  {# Keep Tailwind config here #}
+  <script>
+    tailwind.config = {
+      darkMode: 'class' // Ensure this is still 'class'
+    }
+  </script>
+
+  {# Load Tailwind CSS after config #}
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  {# Include your separate CSS files - theme.css should contain the plain CSS provided below #}
+  {# Ensure theme.css is loaded BEFORE base.css if base.css might override theme variables later #}
+  <link rel="stylesheet" href="{% static 'core/css/theme.css' %}">
+  <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+
+
+  <title>{% block title %}Campus System{% endblock %}</title>
 </head>
-<body class="bg-gray-100 font-sans">
+<body>
 
-    <nav class="bg-blue-600 p-4 text-white shadow-md">
-        <div class="container mx-auto flex justify-between items-center">
-             <a href="{% url 'home' %}" class="text-xl font-bold hover:text-blue-200">CampusSim</a>
-             <div>
-                 <a href="{% url 'gate:scan_simulator' %}" class="px-3 py-2 hover:bg-blue-700 rounded">Gate Sim</a>
-                 <a href="{% url 'meal:scan_simulator' %}" class="px-3 py-2 hover:bg-blue-700 rounded">Meal Sim</a>
-             </div>
-        </div>
-    </nav>
+  {% block header %}{% endblock  %}
 
-    <main class="container mx-auto mt-2 p-4">
-        {# --- Messages Area --- #}
-        {% comment %} {% if messages %}
-            <div class="mb-6">
-                {% for message in messages %}
-                    {# Apply base 'message' class and the specific tag (success, error etc) #}
-                    <div class="message {{ message.tags }}" role="alert">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %} {% endcomment %}
-        {# --- End Messages Area --- #}
+  {% block sidebar %}{% endblock  %}
 
+  {# Removed specific bg/text color classes #}
+  <main id="main-content" class="ml-64 transition-all duration-300 pt-28 p-6 min-h-screen flex items-center justify-center">
+    {% block content %}{% endblock %}
+  </main>
 
-        {% block content %}
-        {% endblock %}
-    </main>
-
-    {% comment %} <footer class="text-center text-gray-500 text-sm mt-12 pb-4">
-        Campus System Simulator &copy; {% now "Y" %} {# Display current year #}
-    </footer> {% endcomment %}
+  {# Include your separate script files here #}
+  {# theme.js should be loaded last if it depends on other scripts or elements being fully ready #}
+  {% comment %} <script src="{% static 'core/js/sidebar.js' %}"></script> {% endcomment %}
+  <script src="{% static 'core/js/settings.js' %}"></script>
+  <script src="{% static 'core/js/theme.js' %}"></script>
 
 </body>
 </html>

@@ -1,22 +1,25 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Home - Campus System{% endblock %}
+{% load static %}
+
+{% block title %}Welcome - ASTU Staff Portal{% endblock %}
+
+{% block header %}
+    {% include "core/components/header.html" %}
+{% endblock  %}
+
+{% block sidebar %}
+    {% include "core/components/sidebar.html" %}
+{% endblock  %}
 
 {% block content %}
-    <div class="bg-white p-8 rounded-lg shadow-md max-w-2xl mx-auto text-center">
-        <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ welcome_message }}</h1>
-        <p class="text-gray-600 mb-6">
-            Select an action below to simulate student interactions using their QR Identifier on thier ID Card.
-        </p>
-        <div class="space-y-4">
-            <a href="{% url 'gate:scan_simulator' %}"
-               class="block w-full bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 transition duration-200 text-lg">
-               Simulate Gate Scan (Entry/Exit)
-            </a>
-            <a href="{% url 'meal:scan_simulator' %}"
-               class="block w-full bg-green-600 text-white py-3 px-4 rounded-md hover:bg-green-700 transition duration-200 text-lg">
-               Simulate Meal Scan (Cafeteria)
-            </a>
-        </div>
+<div class="bg-white p-10 rounded-lg shadow-xl max-w-3xl mx-auto text-center">
+    <div class="flex flex-col items-center justify-center mb-6">
+        <img src="{% static 'core/images/astu-logo.png' %}" alt="ASTU Logo" class="h-20 w-auto mb-4">
+        <h1 class="text-4xl font-extrabold text-gray-800">Welcome to ASTU Staff Portal</h1>
     </div>
+    <p class="text-lg text-gray-600 mb-8">
+        Manage your responsibilities and system interactions using your assigned tools. This platform is built to support administrative and operational efficiency for all ASTU staff members.
+    </p>
+</div>
 {% endblock %}

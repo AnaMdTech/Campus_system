@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% block title %}Staff Login{% endblock %}
+
+{% block header %}
+    {% include "core/components/header.html" %}
+{% endblock  %}
+
+{% block sidebar %}
+    {% include "core/components/sidebar.html" %}
+{% endblock  %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white shadow p-8 rounded text-center">
+  <h2 class="text-2xl font-bold mb-4">Staff Login</h2>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="message {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Username" required class="w-full mb-4 px-4 py-2 border rounded">
+    <input type="password" name="password" placeholder="Password" required class="w-full mb-4 px-4 py-2 border rounded">
+    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold">
+      Login
+    </button>
+  </form>
+</div>
+{% endblock %}

@@ -18,11 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from core.views import home as home_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_page, name='home'),
+    path('', include('core.urls', namespace='core')),
     path('gate/', include('gate.urls', namespace='gate')),
     path('meal/', include('meal.urls', namespace='meal')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -5,6 +5,7 @@ from django.core.files import File
 from django.utils import timezone
 from django.utils.text import slugify
 from pathlib import Path
+from meal.models import Cafeteria
 
 def student_image_upload_path(instance, filename):
     """Generates the upload path for student profile images using pathlib."""
@@ -38,6 +39,14 @@ class Student(models.Model):
     qr_code = models.ImageField(upload_to=student_qr_code_upload_path, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True, verbose_name="Active", null=True, blank=True)
+    assigned_cafeteria = models.ForeignKey(
+        Cafeteria,
+        on_delete=models.PROTECT,
+        related_name='assigned_students',
+        null=True,
+        blank=True
+    )
 
     class Meta:
         verbose_name = "Student"

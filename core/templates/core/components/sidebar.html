@@ -1,0 +1,71 @@
+<aside id="sidebar"
+         class="transition-all duration-300 w-64 text-white fixed top-24 left-0 h-[calc(100vh-6rem)] flex flex-col justify-between z-10 border-r"> {# Removed specific border color class #}
+
+    <div>
+      <div id="sidebar-header-expanded" class="p-4 border-b flex items-center justify-between"> 
+        <div class="flex items-center space-x-2">
+          <span>📋</span> 
+          <span class="text-lg font-bold label">Dashboard</span>
+        </div>
+        {% comment %} <button onclick="toggleSidebar()" class="p-2 hover:bg-gray-700 rounded">☰</button> {% endcomment %}
+      </div>
+
+      {% comment %} <div id="sidebar-header-collapsed" class="hidden h-16 flex justify-center items-center border-b">
+        <button onclick="toggleSidebar()" class="p-2 hover:bg-gray-700 rounded">☰</button>
+      </div> {% endcomment %}
+
+      <nav class="p-4 space-y-2">
+        {# Removed specific color/background classes, relying on base/theme CSS and active-link class #}
+        <a href="{% url 'core:home' %}"
+           class="flex items-center space-x-3 px-3 py-2 rounded hover:bg-gray-700 {% if request.resolver_match.url_name == 'home' and request.resolver_match.app_name == 'core' %}active-link{% endif %}">
+          <span>🏠</span>
+          <span class="label">Home</span>
+        </a>
+
+        <a href="{% url 'gate:staff_login' %}"
+           class="flex items-center space-x-3 px-3 py-2 rounded hover:bg-gray-700 {% if request.resolver_match.url_name == 'staff_login' and request.resolver_match.app_name == 'gate' %}active-link{% endif %}">
+          <span>🚪</span>
+          <span class="label">Gate Scan</span>
+        </a>
+
+        <a href="{% url 'meal:staff_login' %}"
+           class="flex items-center space-x-3 px-3 py-2 rounded hover:bg-gray-700 {% if request.resolver_match.url_name == 'staff_login' and request.resolver_match.app_name == 'meal' %}active-link{% endif %}">
+          <span>🍽️</span>
+          <span class="label">Meal Scan</span>
+        </a>
+
+        <div class="relative">
+          {# Removed specific color classes #}
+          <button onclick="toggleSettingsDropdown()" class="flex justify-between items-center w-full px-3 py-2 rounded hover:bg-gray-700">
+            <div class="flex items-center space-x-3">
+              <span>⚙️</span>
+              <span class="label">Settings</span>
+            </div>
+            <svg class="w-4 h-4 ml-auto transition-transform" id="settings-arrow" xmlns="http://www.w3.org/2000/svg" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <div id="settings-dropdown" class="hidden pl-10 mt-1 space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="text-sm label">Theme</span> {# Removed specific text color class #}
+              <label class="inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="theme-toggle" class="sr-only">
+                {# Removed specific bg classes - controlled by CSS variables now #}
+                <div id="theme-switch" class="w-10 h-5 rounded-full relative transition-colors">
+                  {# Removed specific bg classes - controlled by CSS variables now #}
+                  <div class="w-4 h-4 rounded-full shadow absolute top-0.5 left-0.5 transition-all" id="theme-ball"></div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    {# Removed specific border color and text color classes #}
+    <div class="p-4 border-t text-sm">
+      &copy; {% now "Y" %} ASTU
+    </div>
+  </aside>
